@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 public class checkWord {
@@ -11,7 +8,13 @@ public class checkWord {
         try (Socket clientSocket = new Socket("localhost", PORT);
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
-            out.println("бизнес");
+            String word = "бизнес";
+            out.println(word);
+            System.out.println("Найдено слово: " + word);
+            String check;
+            while ((check = in.readLine()) != null) {
+                System.out.println(check);
+            }
         }
     }
 }

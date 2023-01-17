@@ -37,8 +37,7 @@ public class Main {
                     String word = in.readLine();
                     List<PageEntry> page = engine.search(word);
                     var json = gson.toJson(page);
-                    System.out.println("Найдено слово: " + word);
-                    System.out.println(json);
+                    out.println(json);
                 }
             }
         } catch (IOException e) {
