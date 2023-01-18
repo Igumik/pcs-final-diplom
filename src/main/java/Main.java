@@ -9,13 +9,14 @@ import java.util.*;
 
 public class Main {
     private static final int PORT = 8989;
+    private static BooleanSearchEngine engine;
 
     public static void main(String[] args) throws IOException {
         File[] cat = new File("pdfs").listFiles();
         for (int i = 0; i < Objects.requireNonNull(cat).length; i++) {
             File pdf = cat[i];
-            BooleanSearchEngine engine = new BooleanSearchEngine(pdf);
-            i++;
+            engine = new BooleanSearchEngine(pdf);
+//            i++;
 //            if(cat.length == i){
 //                List<PageEntry> totalList = engine.search("бизнес");
 //                for (PageEntry pageEntry : totalList) {
@@ -26,7 +27,6 @@ public class Main {
 
         //SERVER
         try (ServerSocket serverSocket = new ServerSocket(PORT);) { // стартуем сервер один(!) раз
-            BooleanSearchEngine engine = new BooleanSearchEngine();
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             while (true) { // в цикле(!) принимаем подключения
                 try (
